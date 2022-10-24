@@ -4,12 +4,12 @@ $config = array(
 			[
 				'field' => 'name',
 				'label' => 'Nombre',
-				'rules' => 'required|min_length[2]|max_length[255]is_unique[users.name]'
+				'rules' => 'required|min_length[2]|max_length[255]|is_unique[users.name]'
 			],
 			[
 				'field' => 'email',
 				'label' => 'email',
-				'rules' => 'required|valid_email'
+				'rules' => 'required|valid_email|is_unique[users.email]'
 			],
 			[
 				'field' => 'phone',
