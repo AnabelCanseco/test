@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.js"></script>
 </head>
-	<body class="bg-light">
+<body class="bg-light">
 		<div class="container mt-5">
 				<div class="card text-center">
 					<div class="bg-primary p-2 text-white">
@@ -68,5 +68,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<script src="<?php echo base_url('assets/js/register.js') ?>">
 
 		</script>
-	</body>
+</body>
 </html>

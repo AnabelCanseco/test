@@ -1,5 +1,17 @@
 <?php
 $config = array(
+		'login' => array(
+			[
+				'field' => 'email',
+				'label' => 'email',
+				'rules' => 'required|valid_email'
+			],
+			[
+				'field' => 'pwd',
+				'label' => 'contraseña',
+				'rules' => 'required|min_length[5]'
+			],
+        ),
 		'register' => array(
 			[
 				'field' => 'name',

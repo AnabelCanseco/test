@@ -27,9 +27,6 @@ class Users_model extends CI_Model {
 			];
 	}
 
-
-
-
 	public function generate_pwd($password) {
 		return password_hash($password, self::HASH, ['cost' => self::COST]);
 	}
@@ -48,6 +45,53 @@ class Users_model extends CI_Model {
         }
 
         return false;
+	}
+
+
+	public function user_exist($data)
+	{
+		$response = [
+			'message' => '¡Bienvenido!',
+			'exist'   => true,
+			'class'	  => 'success'
+		];
+
+		$query = $this->db->select('id,name,email,pwd')
+			->from('users')
+			->where('email', $data['email'])
+			->get();
+
+		$count = $query->num_rows();
+
+		if ($count === 1) {
+			$result = $query->row_array();
+
+			if ($this->users->verify_pwd($data['pwd'], $result['pwd'], $result['id'])) {
+				$_SESSION["name"]    = $result['name'];
+				$_SESSION["email"]   = $result['email'];
+
+				$response =[
+					'done'    => true,
+					'class'   => "success",
+					'message' => "¡Bienvenido!"
+				];
+
+			} else {
+				$response =  [
+					'done'    => false,
+					'class'   => "error",
+					'message' => "Usuario o contraseña incorrecto!"
+				];
+			}
+		} else {
+			$response =  [
+				'done'    => false,
+				'class'   => "error",
+				'message' => "Usuario o contraseña incorrecto!"
+			];
+		}
+
+		return $response;
 	}
 
 }
