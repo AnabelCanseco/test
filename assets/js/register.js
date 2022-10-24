@@ -69,7 +69,11 @@ $(document).ready(function() {
 				$('#pwd-error').html("");
 				$('#confirmPwd-error').html("");
 			 if (response.done===true) {
-
+				alert(response.message );
+				window.location.href = "/";
+				$timeout( function(){
+			      window.location.href = "/";
+			   }, 2000 );
 			 }else {
 				 $('#name-error').html(response.errors.name);
 				 $('#email-error').html(response.errors.email);
