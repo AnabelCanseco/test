@@ -72,7 +72,7 @@ class Api extends MY_Controller
 				$token =$this->input->post('token');
 
 				if ($this->auth->validate_token($token)) {
-					$result = $this->users->getUser($userId);
+					$result = $this->users->edit($userId);
 					if (isset($result)) {
 						$response = [
 							'success' => true,
@@ -117,12 +117,18 @@ class Api extends MY_Controller
 	{
 		$method = $_SERVER['REQUEST_METHOD'];
 		if (strtoupper($method) === 'POST') {
-			if ($this->form_validation->run('api')) {
-				$userId =$this->input->post('userId');
-				$token =$this->input->post('token');
-
+			if ($this->form_validation->run('register')) {
+				$token = $this->input->post('token');
 				if ($this->auth->validate_token($token)) {
-					$result = $this->users->user($userId);
+					$api_store = [
+						"name" => $this->input->post('name'),
+					    "email" => $this->input->post('email'),
+					    "phone" => $this->input->post('phone'),
+					    "rfc" => $this->input->post('rfc'),
+					    "pwd" => $this->input->post('pwd'),
+					    "notes" => $this->input->post('notes'),
+					];
+					$result = $this->users->store($api_store);
 					if (isset($result)) {
 						$response = [
 							'success' => true,
@@ -163,7 +169,60 @@ class Api extends MY_Controller
 		}
 	}
 
+	public function updateUser()
+	{
+		$method = $_SERVER['REQUEST_METHOD'];
+		if (strtoupper($method) === 'POST') {
+			if ($this->form_validation->run('registerUpdateApi')) {
+				$token = $this->input->post('token');
+				if ($this->auth->validate_token($token)) {
+					$userId = $this->input->post('userId');
+					$api_update = [
+						"name" => $this->input->post('name'),
+					    "email" => $this->input->post('email'),
+					    "phone" => $this->input->post('phone'),
+					    "rfc" => $this->input->post('rfc'),
+					    "notes" => $this->input->post('notes'),
+					];
+					$result = $this->users->user($api_update,$userId);
+					if (isset($result)) {
+						$response = [
+							'success' => true,
+							'data' => $result,
+						];
+					} else {
+					 	$response = [
+							'success' => false,
+							'message' => " Your identification request was not found. Please check it and try again.",
+						];
+					}
 
+					$this->response_json($response);
+				}else{
+					$response = [
+						'success' => false,
+						'message' => 'Bad authentication',
+					];
+					$this->response_json($response);
+				}
+			}else{
+				$response = [
+					'success' => false,
+					'message' => 'Incomplete information',
+					'error'  => $this->form_validation->error_array()
+				];
+				$this->response_json($response);
 
+			}
+
+		} else {
+			$response = [
+				'success' => false,
+				'message' => 'Method Not Allowed',
+				'error' => true,
+			];
+			$this->response_json($response);
+		}
+	}
 
 }

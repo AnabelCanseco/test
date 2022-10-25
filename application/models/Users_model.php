@@ -102,15 +102,6 @@ class Users_model extends CI_Model {
 			->result();
 	}
 
-	public function getUser($userId)
-	{
-		return $this->db->select('id, name, email, rfc, phone, notes')
-			->from($this->table)
-			->where('id', $userId)
-			->get()
-			->row();
-	}
-
 	public function edit($id)
 	{
 		return  $this->db->select('id, name, email, rfc, phone, notes')
@@ -118,6 +109,14 @@ class Users_model extends CI_Model {
 			->where('id', $id)
 			->get()
 			->row();
+	}
+
+	public function update($api_update, $userId)
+	{
+
+
+	return  $this->db->where('id', $userId)
+		->db->update($this->table, $api_update);
 	}
 
 }
