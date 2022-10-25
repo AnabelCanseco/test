@@ -45,7 +45,7 @@ $config = array(
 			],
 
 		),
-		'register' => array(
+		'registerEdit' => array(
 			[
 				'field' => 'name',
 				'label' => 'Nombre',
@@ -77,6 +77,18 @@ $config = array(
 				'field' => 'password',
 				'label' => 'Password',
 				'rules' => 'required'
-		)
-	),
+			),
+		),
+		'api' => array(
+			array(
+				'field' => 'token',
+				'label' => 'Token',
+				'rules' => 'required'
+			),
+			array(
+				'field' => 'userId',
+				'label' => 'User ID',
+				'rules' => 'required|numeric'
+			),
+		),
 );
