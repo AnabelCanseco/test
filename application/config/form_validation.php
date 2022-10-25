@@ -67,4 +67,16 @@ $config = array(
 				'rules' => 'required|min_length[12]|max_length[13]'
 			],
 		),
+		'signup' => array(
+			array(
+				'field' => 'username',
+				'label' => 'Username',
+				'rules' => 'required'
+			),
+			array(
+				'field' => 'password',
+				'label' => 'Password',
+				'rules' => 'required'
+		)
+	),
 );
