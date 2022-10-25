@@ -17,8 +17,18 @@ class Register extends CI_Controller {
 
 	public function store(){
 		if ($this->input->is_ajax_request()) {
+			log_message('error', print_r($this->input->post(),true));
 			if ($this->form_validation->run('register')) {
-				echo json_encode($this->users->store($this->input->post()));
+				$user_sql= [
+					"name" => $this->input->post('name'),
+				    "email" => $this->input->post('email'),
+				    "phone" => $this->input->post('phone'),
+				    "rfc" => $this->input->post('rfc'),
+				    "pwd" => $this->input->post('pwd'),
+				    "notes" => $this->input->post('notes'),
+				];
+
+				echo json_encode($this->users->store( $user_sql ) );
 			} else {
 				$response = [
 					'class'   =>'alert-danger',

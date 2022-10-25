@@ -9,7 +9,6 @@ class Users_model extends CI_Model {
 
 	public function store($user_store)
 	{
-		unset($user_store['confirmPwd']);
 		if (array_key_exists('pwd', $user_store)) {
 		    $user_store['pwd'] = $this->generate_pwd($user_store['pwd']);
 		}
