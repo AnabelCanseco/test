@@ -45,4 +45,26 @@ $config = array(
 			],
 
 		),
+		'register' => array(
+			[
+				'field' => 'name',
+				'label' => 'Nombre',
+				'rules' => 'required|min_length[2]|max_length[255]'
+			],
+			[
+				'field' => 'email',
+				'label' => 'email',
+				'rules' => 'required|valid_email'
+			],
+			[
+				'field' => 'phone',
+				'label' => 'Teléfono celular',
+				'rules' => 'required|numeric|exact_length[10]'
+			],
+			[
+				'field' => 'rfc',
+				'label' => 'RFC',
+				'rules' => 'required|min_length[12]|max_length[13]'
+			],
+		),
 );
