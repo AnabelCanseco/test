@@ -23,6 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			  		<h4 class="text-center">Inicio de sesión</h4>
 			  	</div>
 				<form class="row g-4 mt-5" id="login-form" method="post">
+			  	<span class="text-danger" id="message-error"></span>
 					<div class="col-md-12 col-sm-12">
 						<label for="email" class="form-label">Email</label>
 						<input type="email" class="form-control" id="email" name="email">
@@ -38,7 +39,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 				</form>
 				</div>
-
+				<div class="mt-3 mb-3  text-center">
+					<a href="<?php echo base_url('register') ?>">Registrarse</a>
+				</div>
 		    </div>
 		  </div>
 		</div>

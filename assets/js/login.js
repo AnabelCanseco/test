@@ -36,8 +36,11 @@ $(document).ready(function() {
 			      window.location.href = "/";
 			   }, 2000 );
 			 }else {
-				$('#email-error').html(response.errors.email);
-				$('#pwd-error').html(response.errors.pwd);
+			 	if (response.errors ==='null') {
+					$('#email-error').html(response.errors.email);
+					$('#pwd-error').html(response.errors.pwd);
+			 	}
+			 	$('#message-error').html(response.message);
 			 }
 			}).fail(function( jqXHR, textStatus ) {
 				alert( "Request failed: " + textStatus );

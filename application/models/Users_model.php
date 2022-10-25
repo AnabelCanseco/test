@@ -69,6 +69,7 @@ class Users_model extends CI_Model {
 			if ($this->users->verify_pwd($data['pwd'], $result['pwd'], $result['id'])) {
 				$_SESSION["name"]    = $result['name'];
 				$_SESSION["email"]   = $result['email'];
+				$_SESSION["logged"]  = true;
 
 				$response =[
 					'done'    => true,
@@ -92,6 +93,27 @@ class Users_model extends CI_Model {
 		}
 
 		return $response;
+	}
+
+	public function get()
+	{
+		return $this->db->select('id, name, email, rfc, phone, notes')
+			->from($this->table)
+			->get()
+			->result();
+	}
+
+	public function edit($id)
+	{
+		$return = $this->db->select('id, name, email, rfc, phone, notes')
+			->from($this->table)
+			->where('id', 1)
+			->get()
+			->row();
+
+		//log_message('error',print_r($this->db->last_query(),true));
+
+		return $return;
 	}
 
 }

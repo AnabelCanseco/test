@@ -23,8 +23,18 @@ class Login extends CI_Controller {
 	public function validate()
 	{
 		if ($this->input->is_ajax_request()) {
-			log_message('error', print_r($this->input->post(),true));
-			echo json_encode($this->users->user_exist($this->input->post()));
+			if ($this->form_validation->run('login')) {
+				log_message('error', print_r($this->input->post(),true));
+				echo json_encode($this->users->user_exist($this->input->post()));
+			} else {
+				$response = [
+					'class'   =>'alert-danger',
+                    'message' => 'Se han encontrado datos incorrectos',
+                    'errors'  => $this->form_validation->error_array()
+				];
+				echo json_encode($response);
+			}
+
 		} else {
 			echo json_encode('Petición incorrecta');
 		}

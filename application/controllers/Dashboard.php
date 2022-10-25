@@ -11,7 +11,11 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('dashboard');
+		if (isset($_SESSION['logged'])) {
+			$users['users'] = $this->users->get();
+			$this->load->view('dashboard', $users);
+		}else {
+			$this->load->view('login');
+		}
 	}
-
 }
