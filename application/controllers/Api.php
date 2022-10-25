@@ -11,7 +11,7 @@ class Api extends MY_Controller
 	{
 		parent::__construct();
 		$this->load->model('auth_model','auth');
-		$this->load->model('api_model','users');
+		$this->load->model('users_model','users');
 	}
 
 	public function users()
@@ -22,7 +22,7 @@ class Api extends MY_Controller
 			if (isset($_GET['token'])) {
 				$token = $_GET['token'];
 				if ($this->auth->validate_token($token)) {
-					$result = $this->users->users();
+					$result = $this->users->get();
 					if (isset($result)) {
 						$response = [
 							'success' => true,
@@ -72,7 +72,7 @@ class Api extends MY_Controller
 				$token =$this->input->post('token');
 
 				if ($this->auth->validate_token($token)) {
-					$result = $this->users->user($userId);
+					$result = $this->users->getUser($userId);
 					if (isset($result)) {
 						$response = [
 							'success' => true,
