@@ -105,15 +105,11 @@ class Users_model extends CI_Model {
 
 	public function edit($id)
 	{
-		$return = $this->db->select('id, name, email, rfc, phone, notes')
+		return  $this->db->select('id, name, email, rfc, phone, notes')
 			->from($this->table)
-			->where('id', 1)
+			->where('id', $id)
 			->get()
 			->row();
-
-		//log_message('error',print_r($this->db->last_query(),true));
-
-		return $return;
 	}
 
 }

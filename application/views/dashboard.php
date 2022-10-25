@@ -72,8 +72,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	             <td><?php echo $user->rfc; ?></td>
 	             <td><?php echo $user->notes; ?></td>
 	             <td>
-	             	<button class="btn btn-primary btn-sm editar-btn" data-bs-toggle="modal" data-bs-target="#exampleModalLabel" data-id='$user->id' data-placement="bottom" title="Editar datos">
-	             		Editar
+	             	<button type="button" class="btn btn-primary editar-btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="<?php echo $user->id ?>" data-placement="bottom" title="Editar datos">
+					  Editar
 					</button>
 	             </td>
 	          </tr>
@@ -85,29 +85,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 
 
-			<!-- Modal -->
-			<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-			  <div class="modal-dialog">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <h5 class="modal-title" id="staticBackdropLabel"></h5>
-			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			      </div>
-			      <div id="editarForm">
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar datos</h1>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div id="editarForm">
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
-				  </div>
+	<script src="<?php echo base_url('assets/js/user.js') ?>">
 
-			    </div>
-			  </div>
-			</div>
-
-	<script>
-	    $('#usersListData').DataTable( {
-	        dom: 'Bfrtip',
-	        buttons: [
-	            'csv', 'excel'
-	        ]
-	    } );
 	</script>
 </body>
 </html>
